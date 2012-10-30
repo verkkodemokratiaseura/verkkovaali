@@ -1,0 +1,115 @@
+# <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+.. _domain_identifiers:
+
+Domain identifiers
+==================
+
+Domain identifiers are OpenID identity URLs that consist only of a domain name
+without any path components, e.g.
+
+  http://john.doe.provider.com/
+
+where the ``provider.com`` is the primary address of the OpenID provider.
+The alternative to domain identifiers is to include the differentiating
+information in the path component of the URL, e.g.
+
+  http://provider.com/id/john.doe
+
+Domain identifiers require support on both the DNS and web server level to map
+arbitrary domain names to a single application in a meaningful manner. Support
+for domain identifiers in this application is implemented in the following
+manner. In the examples below we use ``http://provider.com/`` as the primary
+address for the OpenID provider and ``http://john.doe.provider.com/`` as an
+OpenID identity URL for a single user.
+
+DNS configuration
+-----------------
+
+The authoritative name server for the ``provider.com`` domain must be
+configured to use `wildcard DNS records
+<http://en.wikipedia.org/wiki/Wildcard_DNS_record>`_. In our set up we
+configure the primary domain and all domain identifiers to resolve to the ip
+address ``1.2.3.4`` using the following zone file.
+
+::
+
+  $ORIGIN provider.com.
+  $TTL 24H
+
+  @ IN  SOA ns1.provider.com. hostmaster.provider.com. (
+        2010092002  ; serial number
+        5M  ; refresh
+        2H  ; retry
+        4W  ; expire
+        30M ; minimum (neg. ttl)
+      )
+  ;
+
+  @     IN  NS  ns1.provider.com.
+        IN  NS  ns2.provider.com.
+
+        IN  A 1.2.3.4
+  *     IN  A 1.2.3.4
+
+This will instruct the name server to resolve ``provider.com`` and any
+subdomain to the same ip address.
+
+Apache configuration
+--------------------
+
+In Apache we can use a single ``<VirtualHost>`` configuration to manage the
+application itself and the domain identifiers. In order to do that we need a
+dedicated ip address that is not used for other virtual hosting applications.
+
+.. code-block:: apache
+
+  <VirtualHost 1.2.3.4:80>
+      ServerAdmin webmaster@provider.com
+      ServerName provider.com
+      ErrorLog "/var/log/apache2/provider.com-error.log"
+      CustomLog "/var/log/apache2/provider.com-access.log" combined
+
+      # Make sure the application always sees the primary domain as the
+      # virtual host even if we are serving the domain identifier page.
+      RequestHeader add X-Vhm-Host http://provider.com
+
+      RewriteEngine On
+      RewriteMap tolower int:tolower
+
+      # Rewrite attempts to access the internal application identity URLs to
+      # the domain identifiers.
+      RewriteRule ^/id/(.*)$ http://$1.%{SERVER_NAME}/ [R=301,L]
+
+      # The OpenID identity page is served from http://provider.com/id/${username}
+      # as far as the application is concerned. To implement domain
+      # identifiers we match them from the Host header and if found proxy to
+      # the corresponding page within the application.
+      RewriteCond %{HTTP_HOST} !^$
+      RewriteCond ${tolower:%{HTTP_HOST}|NONE} ^(.+)$
+      RewriteCond %1 ^(.*)\.provider\.com
+      RewriteRule ^/(.*)$ http://localhost:6543/id/%1 [P]
+
+      # Proxy other requests to the provider application directly.
+      RewriteRule ^/(.*)$ http://localhost:6543/$1 [P]
+
+  </VirtualHost>
+
+Application configuration
+-------------------------
+
+The application uses the `repoze.vhm
+<http://pypi.python.org/pypi/repoze.vhm>`_ middleware to implement support for
+the domain identifiers. The middleware does not require any configuration and
+is enabled in the PasteDeploy configuration by adding
+``egg:repoze.vhm#vhm_xheaders`` directly into the WSGI pipeline.
+
+By setting the ``X-Vhm-Host`` header explicitly to the primary domain
+(``http://provider.com``) we effectively cause all generated links to be
+rooted at ``http://provider.com/`` even when serving the domain identifier
+page at a subdomain. In practice this means that all resources except the
+identity page itself will be served from the primary domain.
+
+The ``webidentity.views.oid.identity_url()`` function, that is responsible for
+generating the OpenID identity URLs will look for the ``X-Vhm-Host`` header in
+the current request and generate a domain identifier if found. It will
+fallback on generating the path component identifier.

@@ -1,0 +1,67 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <h1>Äänestäjälista</h1>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+      <p>Tallenna omalle koneellesi alla olevasta linkistä koulusi äänestäjälista.</p>
+      <p><span class="important-notification">Huom.! Oppilailla, joiden kohdalla Äänestänyt-sarakkeeseen on merkitty sähköisen etä-äänestyksen ajankohta, ei ole oikeutta äänestää uurnavaalissa.</span>
+      </p>
+      <p>Äänestäjälista Excel-tiedostona: <a href="${voter_list_xls}">nuorisovaalit2011-aanestajalista.xls</a></p>
+      <p>Excel-tiedoston voi avata Microsoft Excel tai OpenOffice.org -taulukkolaskentaohjelmassa.</p>
+
+          <p><a href="#" rel="#part1-help">Ohjeet Excel-pohjan avaamiseen ja käyttämiseen</a></p>
+
+        <div id="part1-help" class="submission-help">
+          <div class="content">
+
+            <h2>Ohjeet Excel-pohjan avaamiseen ja käyttämiseen</h2>
+
+            <p>Tiedostossa on listattuna kaikki oppilaat (sukunimi,
+            etunimi, syntymäaika) sekä ajankohta mahdollisesti
+            annetusta sähköisestä äänestä.</p>
+
+            <p>Jos 'Äänestänyt'-sarakkeessa on merkitty aikaleima, ei
+            oppilaalla ole oikeutta äänestää uurnavaaleissa.</p>
+
+            <h3>Microsoft Excel</h3>
+            <div class="centered-image">
+              <img src="${request.application_url}/static/images/voter-list-excel.png"
+                   alt="Esimerkki äänestäjälistasta"/><br/>
+              <span class="image-caption"><b>Kuva 1</b>. Äänestäjälista Microsoft Excel:issä.
+              Käyttäjillä 2 ja 5 on 'Äänestänyt'-sarakkeessa aikaleima, joten heillä ei ole oikeutta
+              äänestää uurnavaaleissa.</span>
+            </div>
+
+            <h3>OpenOffice.org</h3>
+            <div class="centered-image">
+              <img src="${request.application_url}/static/images/voter-list-openoffice.png"
+                   alt="Esimerkki äänestäjälistasta"/><br/>
+              <span class="image-caption"><b>Kuva 2</b>. Äänestäjälista OpenOffice.org:issa.
+              Käyttäjillä 2 ja 5 on 'Äänestänyt'-sarakkeessa aikaleima, joten heillä ei ole oikeutta
+              äänestää uurnavaaleissa.</span>
+            </div>
+
+          </div>
+        </div>
+
+    </div>
+
+  </body>
+
+  <metal:js metal:fill-slot="javascript_bottom">
+    <script type="text/javascript">
+      $(function () {
+        var maxHeight = $(window).height() - 160;
+        $('.submission-help .content').css('max-height', maxHeight + 'px');
+        $('a[rel]').overlay();
+      });
+    </script>
+  </metal:js>
+
+</html>

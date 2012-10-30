@@ -1,0 +1,42 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="main.macros['master']">
+<head></head>
+<body>
+  <metal:main fill-slot="main">
+  <section i18n:domain="WebIdentity">
+    <h2 i18n:translate="">Log in to your account</h2>
+
+    <form action="${action_url}" method="post" autocomplete="off">
+      <p>
+        <label for="username"
+               i18n:translate="label_username">Username</label>
+      </p>
+      <input type="text" name="login" value="${login}"
+             id="username"
+             autofocus="autofocus"
+             placeholder="Username, e.g. john.doe"
+             i18n:attributes="placeholder"/>
+      <p>
+        <label for="password"
+               i18n:translate="">Password</label>
+      </p>
+      <input type="password" name="password" value=""
+             placeholder="Password" id="password"
+             i18n:attributes="placeholder"/>
+
+      <input type="hidden" name="csrf_token" value="${csrf_token}"/>
+      <p class="form-actions">
+        <input type="submit" id="submit-login" name="form.submitted" value="Log In"
+               i18n:attributes="value"/>
+      </p>
+    </form>
+
+    <div><a href="${reset_url}"
+            i18n:translate="">Forgot your password?</a></div>
+  </section>
+  </metal:main>
+</body>
+</html>

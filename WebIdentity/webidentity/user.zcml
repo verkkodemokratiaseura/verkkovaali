@@ -1,0 +1,82 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<configure xmlns="http://pylonshq.com/pyramid">
+
+  <!--
+  <route
+    pattern="/change-password"
+    name="change_password"
+    view=".views.user.change_password"
+    view_renderer="views/templates/change_password.pt"
+    />
+
+  <route
+    pattern="/reset-password"
+    name="reset_password"
+    view=".views.login.PasswordResetView"
+    view_attr="render_form"
+    renderer="views/templates/reset_password.pt"
+    />
+
+  <route
+    pattern="/reset-password/initiate"
+    name="reset_password_initiate"
+    view=".views.login.PasswordResetView"
+    view_attr="send_confirmation_message"
+    request_method="POST"
+    />
+  -->
+
+  <!-- Updates the user password if all input is valid -->
+  <!--
+  <route
+    pattern="/reset-password/process"
+    name="reset_password_process"
+    view=".views.login.PasswordResetView"
+    view_attr="change_password"
+    request_method="POST"
+    />
+
+  <route
+    pattern="/reset-password/{token}"
+    name="reset_password_token"
+    view=".views.login.PasswordResetView"
+    view_attr="password_change_form"
+    renderer="views/templates/reset_password_set_password.pt"
+    />
+  -->
+
+  <!--
+  <route
+    pattern="/home"
+    name="home_page"
+    view=".views.user.home_page"
+    renderer="views/templates/home_page.pt"
+    />
+  -->
+
+  <!-- Normal login page without pending OpenID authentication request -->
+  <!--
+  <route
+    pattern="/login"
+    name="login"
+    view=".views.login.login"
+    view_renderer="views/templates/login.pt"
+    />
+
+  <route
+    pattern="/logout"
+    name="logout"
+    view=".views.login.logout"
+    />
+  -->
+
+  <!--
+  <route
+    pattern="visited-sites"
+    name="visited_sites"
+    view=".views.user.visited_sites"
+    renderer="views/templates/visited_sites.pt"
+    />
+  -->
+
+</configure>

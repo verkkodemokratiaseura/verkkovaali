@@ -1,0 +1,102 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<configure xmlns="http://pylonshq.com/pyramid">
+
+  <!-- this must be included for the view declarations to work -->
+  <include package="pyramid_zcml" />
+
+  <authtktauthenticationpolicy
+    secret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    secure="true"
+    include_ip="true"
+    timeout="600"
+    reissue_time="60"
+    http_only="true"
+    />
+
+  <aclauthorizationpolicy/>
+
+  <!-- Global variables available for each renderer -->
+  <utility
+     component="nuorisovaalit.views.system.renderer_globals_factory"
+     provides="pyramid.interfaces.IRendererGlobalsFactory"
+   />
+
+  <!-- Step 1: The OpenID login page -->
+  <route 
+    pattern=""
+    name="login"
+    view=".views.login.login"
+    view_renderer="views/templates/login.pt"
+    />
+
+  <!-- OpenID server authentication response handler -->
+  <route
+    pattern="/openid-response"
+    name="openid-response"
+    view=".views.login.openid_response"
+    />
+
+  <!-- Denied OpenID authentication (canceled). -->
+  <route
+    pattern="/openid-canceled"
+    name="openid-canceled"
+    view=".views.login.openid_canceled"
+    />
+
+  <!-- Step 2: Selection of a candidate -->
+  <route
+    pattern="/valitse"
+    name="select"
+    view=".views.voting.select"
+    view_permission="vote"
+    view_renderer="views/templates/select.pt"
+    />
+
+  <!-- Step 3: Voting for a candidate -->
+  <route 
+    pattern="/aanesta/{number:\d+}"
+    name="vote"
+    view=".views.voting.vote"
+    view_permission="vote"
+    view_renderer="views/templates/vote.pt"
+    />
+
+  <!-- Step 4: Thank you, bye bye -->
+  <route
+    pattern="/valmis"
+    name="vote-finish"
+    view=".views.voting.vote_finish"
+    view_permission="vote"
+    view_renderer="views/templates/vote-finish.pt"
+    />
+
+  <route
+    pattern="/close-window"
+    name="close-window"
+    view=".views.voting.close_window"
+    view_renderer="views/templates/close-window.pt"
+    />
+
+  <!-- Customize 403 Forbidden response -->
+  <view
+    view=".views.exceptions.unauthorized"
+    context="pyramid.exceptions.Forbidden"/>
+
+  <!-- Customized 404 Not Found response -->
+  <view
+    view=".views.exceptions.notfound"
+    context="pyramid.exceptions.NotFound"/>
+
+  <!-- HAProxy health check resource. -->
+  <route
+    pattern="/ping"
+    name="ping"
+    view=".views.system.ping"
+    />
+
+  <static
+    name="static"
+    path="views/templates/static"
+    />
+
+</configure>

@@ -1,0 +1,100 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Anne</LastAuthor>
+  <Created>2011-03-21T13:50:19Z</Created>
+  <LastSaved>2011-03-21T13:50:51Z</LastSaved>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10836</WindowHeight>
+  <WindowWidth>16332</WindowWidth>
+  <WindowTopX>480</WindowTopX>
+  <WindowTopY>96</WindowTopY>
+  <DoNotCalculateBeforeSave/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Font ss:FontName="Arial" x:CharSet="1"/>
+  </Style>
+  <Style ss:ID="s18">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:CharSet="1"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Nuorisovaalit 2011">
+  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="4" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="13.2">
+   <Column ss:StyleID="s18" ss:AutoFitWidth="0" ss:Width="62.400000000000006"/>
+   <Column ss:StyleID="s18" ss:AutoFitWidth="0" ss:Width="103.8"/>
+   <Column ss:StyleID="s18" ss:AutoFitWidth="0" ss:Width="62.400000000000006"/>
+   <Row>
+    <Cell><Data ss:Type="String">Numero</Data></Cell>
+    <Cell><Data ss:Type="String">Nimi</Data></Cell>
+    <Cell><Data ss:Type="String">Äänimäärä</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">Akü Änkkä</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">100</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">Rööpe Änkkä</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">50</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">Kröisös Pennönen</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">25</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:CenterHorizontal="1" x:StartPageNumber="1"/>
+    <Header x:Margin="0.1" x:Data="&amp;S"/>
+    <Footer x:Margin="0.1" x:Data="&amp;N"/>
+    <PageMargins x:Bottom="0.37" x:Left="0.3" x:Right="0.3" x:Top="0.61"/>
+   </PageSetup>
+   <NoSummaryRowsBelowDetail/>
+   <NoSummaryColumnsRightDetail/>
+   <Print>
+    <LeftToRight/>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>300</HorizontalResolution>
+    <VerticalResolution>300</VerticalResolution>
+   </Print>
+   <PageBreakZoom>60</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>4</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

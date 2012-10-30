@@ -1,0 +1,41 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <h1>Nuorisovaalit 2011 -hallinnointijärjestelmä</h1>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+      <p>Tältä sivustolta löydät Nuorisovaalit 2011 -hankkeeseen osallistuville kouluille tarkoitetun äänestyksen hallinnointijärjestelmän.</p>
+
+      <p>Koulusi yhteyshenkilönä sinulle on lähetetty tunnukset järjestelmän käyttöä varten.</p>
+
+      <p class="important-notification">Huom! Mikäli ette osallistu sähköiseen äänestykseen, kohdat 1 ja 2 eivät päde teihin.</p>
+
+      <ol class="instruction-list">
+        <li>Aloita lataamalla järjestelmään oppilastiedot <b>16.3.2011&#160;klo&#160;12.00&#160;mennessä</b> <i>Oppilastietojen&#160;lataaminen</i>&#160;-sivulla.</li>
+
+        <li>Jos koulusi osallistuu sähköiseen etä-äänestämiseen, hae sähköisen etä-äänestämisen päätyttyä <b>28.3.2011 alkaen</b> tiedot äänestäneistä <i>Äänestäjälista</i>-sivulta.</li>
+
+        <li>Uurnaäänestyksen jälkeen lataa järjestelmään uurnaäänestyksen tulokset <b>8.4.2011&#160;klo&#160;24.00 mennessä</b> <i>Tulosten&#160;lataaminen</i>&#160;-sivulla.</li>
+        <li>Tulosten julkaisemisen jälkeen <b>12.4.2011&#160;klo&#160;12.00</b> hae äänestyksen tulokset <i>Tulokset</i>-sivulta.</li>
+
+      </ol>
+
+      <p>Sähköisen etä-äänestämisen kokeilun järjestää yhteistyössä xxxx ja yyyy.</p>
+
+      <p><strong>Lisätietoja ja neuvontaa:</strong><br />
+      xxxx<br/>
+      xxxx<br/>
+      Nuorisovaalit 2011<br/>
+      GSM xxx xxx xxxx<br/>
+      Sähköposti xxxx.xxxx@xxxx.xx<br/>
+      WWW <a href="http://wwww.xxxx.xx" title="xxxx" target="_blank">http://www.xxxx.xx</a></p>
+
+    </div>
+
+  </body>
+</html>

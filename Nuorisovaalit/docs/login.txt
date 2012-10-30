@@ -1,0 +1,39 @@
+<OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Authentication process
+======================
+
+The authentication process is implemented using a dedicated OpenID provider
+(https://did.fi) which handles the authentication. Other OpenID providers are
+not trusted. The application also maintains a whitelist of valid OpenID
+identities which are allowed to participate in the election after successful
+authentication. It therefore follows that
+
+  * only https://did.fi may act as an identity provider for this application.
+
+  * only authenticated identities whitelisted in the application database are
+    allowed to participate in the election.
+
+During the election period (21.3.2010 - 27.3.2010) authenticated users are
+granted the ``vote`` permission which permits them to cast a vote. Before and
+after the configured period it is not possible to cast a vote.
+
+
+.. automodule:: nuorisovaalit.views.login
+
+OpenID authentication
+---------------------
+
+.. autofunction:: login
+
+.. autofunction:: openid_initiate
+
+.. autofunction:: openid_response
+
+Utilities
+---------
+
+.. autofunction:: authenticated_user
+
+.. autofunction:: make_consumer
+
+.. autofunction:: openid_failure

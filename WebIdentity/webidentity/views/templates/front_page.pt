@@ -1,0 +1,29 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="main.macros['master']">
+<head>
+  <metal:head fill-slot="head_slot">
+  <link rel="openid2.provider" href="${openid_endpoint}"/>
+  <link rel="openid.server" href="${openid_endpoint}"/>
+  <meta http-equiv="x-xrds-location" content="${xrds_location}"/>
+  </metal:head>
+</head>
+<body>
+  <metal:header fill-slot="header">
+    <div id="front-page-header">
+      <h1 class="visuallyhidden">Nuorisovaalit 2011</h1>
+    </div>
+  </metal:header>
+
+  <metal:main fill-slot="main">
+  <section id="front-page">
+    <h2>Nuorisovaalit 2011 - Tunnistautuminen</h2>
+
+    <p>Tämä sivusto toimii <a href="http://www.nuorisovaalit2011.fi">Nuorisovaalit
+    2011</a> -varjovaalien tunnistautumispalveluna.</p>
+
+  </section>
+  </metal:main>
+
+</body>
+</html>

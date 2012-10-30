@@ -1,0 +1,41 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="main.macros['master']">
+<head>
+</head>
+<body>
+  <metal:header fill-slot="header">
+    <div id="openid-login-header">
+      <h1 class="visuallyhidden">Sisäänkirjautuminen</h1>
+    </div>
+  </metal:header>
+
+  <metal:main fill-slot="main">
+  <section i18n:domain="WebIdentity">
+
+    <form id="auth-login-form" action="${action_url}" method="post" autocomplete="off">
+      <p>
+        <label for="login"
+               i18n:translate="">Username</label>
+      </p>
+      <p class="field-info">Kirjoita alla olevaan kenttään saamasi käyttäjätunnus, esim. matti.meikalainen.</p>
+      <input type="text" id="login" name="login" autofocus="autofocus" value="${login_name}" tabindex="1" />
+      <p id="password-label">
+        <label for="password"
+               i18n:translate="">Password</label>
+      </p>
+      <p class="field-info">Kirjoita alla olevaan kenttään saamasi salasana, esim. 5ala5ana8.</p>
+      <input type="password" id="password" name="password" value="" tabindex="2" />
+      <input type="hidden" name="csrf_token" value="${csrf_token}" />
+      <p class="form-actions">
+        <input type="submit" id="submit-identify-login" name="form.submitted" value="Tunnistaudu" tabindex="3"
+               i18n:attributes="value button_log_in;"/>
+      </p>
+    </form>
+
+  </section>
+  </metal:main>
+
+</body>
+</html>

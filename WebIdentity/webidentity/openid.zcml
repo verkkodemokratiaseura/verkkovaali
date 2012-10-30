@@ -1,0 +1,57 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<configure xmlns="http://pylonshq.com/pyramid">
+
+  <!-- OpenID end point. All the OpenID protocol messages are handled
+       through this URL. -->
+  <route
+    pattern="/openid"
+    name="openid_endpoint"
+    view=".views.oid.endpoint"
+    />
+
+  <!-- OpenID authentication confirmation -->
+  <route
+    pattern="/confirm"
+    name="openid_confirm"
+    view=".views.oid.confirm"
+    />
+
+  <!-- Login form for OpenID authentication confirmation -->
+  <route
+    pattern="/confirm-login"
+    name="openid_confirm_login"
+    view=".views.oid.confirm_login"
+    />
+
+  <!-- Handler for ``openid_confirm_login`` -->
+  <route
+    pattern="/confirm-login-success"
+    name="openid_confirm_login_success"
+    view=".views.oid.confirm_login_success"
+    />
+
+  <!-- OpenID identity for a user -->
+  <route
+    pattern="/id/{local_id}"
+    name="openid_identity"
+    view=".views.oid.identity"
+    view_renderer="views/templates/openid_identity.pt"
+    />
+
+  <!-- Yadis XRDS discovery document for the provider -->
+  <route
+    pattern="/yadis"
+    name="yadis_server"
+    view=".views.oid.yadis"
+    view_renderer="views/templates/openid_yadis.pt"
+    />
+
+  <!-- Yadis XRDS discovery document for a user -->
+  <route
+    pattern="/yadis/{local_id}"
+    name="yadis_user"
+    view=".views.oid.yadis"
+    view_renderer="views/templates/openid_yadis.pt"
+    />
+
+</configure>

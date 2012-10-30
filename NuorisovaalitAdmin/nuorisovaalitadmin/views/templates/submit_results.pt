@@ -1,0 +1,198 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <h1>Tulosten lataaminen</h1>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+
+      <div class="submission-errors" tal:condition="errors or file_type_error">
+        <p>Lähettämässäsi tiedostossa oli virheitä, tiedostoa ei tallennettu.</p>
+        <h3>Virheet:</h3>
+        <div tal:condition="file_type_error">
+          <p>Virheilmoitus voi johtua esimerkiksi seuraavista asioista:</p>
+          <ul>
+            <li>Tiedosto ei ole oikeassa muodossa. Oikea muoto on
+            Excel-tiedosto (.xls tai .xlsx pääte), joka on yhteensopiva Excelin version
+            95, 97, 2000, 2003 tai 2007 kanssa. Excelin <em>Tallenna
+            nimellä</em>-valikosta on mahdollista valita ja varmistaa käytössä
+            oleva tallennusmuoto.</li>
+
+            <li>Kaikkia Excel-pohjan sarakkeita (numero, nimi,
+            äänimäärä) ei löydy lähetettävästä tiedostosta.</li>
+          </ul>
+        </div>
+        <ul>
+          <li tal:repeat="error errors">
+            Rivi ${error.lineno}: ${error.msg}
+          </li>
+        </ul>
+        <p tal:condition="errors_left">
+          + ${errors_left} lisää...
+        </p>
+      </div>
+
+      <div class="submission">
+        <h2>1. Tallenna Excel-pohja omalle koneellesi</h2>
+        <div class="submission-info">
+          <p>Uurnaäänestyksen tulosten ilmoittamiseksi tallenna oheisesta linkistä Excel-pohja omalle koneellesi:
+          <a href="${template_url}" title="Nuorisovaalit 2011 -uurnatulokset">nuorisovaalit2011-uurnatulokset.xls</a>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="submission">
+        <h2>2. Kirjaa tulokset Excel-pohjaan</h2>
+        <div class="submission-info">
+          <p>Avaa Excel-pohja Microsoft Excel tai OpenOffice.org -taulukkolaskentaohjelmassa.</p>
+          <p>Täytä 'Äänimäärä'-sarakkeeseen annetut äänimäärät jokaiselle tiedostossa olevalle ehdokkaalle.</p>
+
+          <p>Mikäli tiedonsiirrossa on ongelmia voit ottaa yhteyttä tekniseen
+          tukipalveluun osoitteessa <a
+          href="mailto:xxxx@xxxx.xx">xxxx@xxxx.xx</a>. Ilmoita
+          viestissä omat yhteystietosi, käyttäjätunnuksesi sekä ongelman
+          kuvaus.</p>
+
+          <p><a href="#" rel="#part1-help">Ohjeet Excel-pohjan avaamiseen ja muokkaamiseen</a></p>
+        </div>
+
+        <div id="part1-help" class="submission-help">
+          <div class="content">
+
+            <h2>Ohjeet Excel-pohjan avaamiseen ja muokkaamiseen</h2>
+            <h3>Microsoft Excel:</h3>
+            <ul>
+              <li><a href="#title-1">Excel-pohjan avaaminen</a></li>
+            </ul>
+            <h3>OpenOffice.org:</h3>
+            <ul>
+              <li><a href="#title-3">Excel-pohjan avaaminen</a></li>
+            </ul>
+            <h3>Yleiset ohjeet:</h3>
+            <ul>
+              <li><a href="#title-5">Excel-pohjan täyttäminen</a></li>
+              <li><a href="#title-6">Tuetut Excel-tiedostojen versiot</a></li>
+            </ul>
+
+            <!-- Excel OHJEET -->
+            <h3 id="title-1">Excel-pohjan avaaminen Microsoft Excel
+            -taulukkolaskentaohjelmassa</h3>
+
+            <p>Avaa lataamasi tiedosto <b>nuorisovaalit2011-uurnatulokset.xls</b>
+               Microsoft Excel-ohjelmassa. Avattuasi tiedoston pitäisi ruudulla
+               näkyä kuvan 1 kaltainen näkymä, jossa ovat otsaketiedot.</p>
+
+            <div class="centered-image">
+              <img src="${request.application_url}/static/images/results-template-excel.png"
+                   alt="Avattu Excel-pohja Microsoft Excel -taulukkolaskentaohjelmassa."/><br/>
+              <span class="image-caption"><b>Kuva 1</b>. Otsaketiedot omissa sarakkeissaan Microsoft Excel -taulukkolaskentaohjelmassa.</span>
+            </div>
+
+            <!-- OOo OHJEET -->
+            <h3 id="title-3">Excel-pohjan avaaminen
+            OpenOffice.org-taulukkolaskentaohjelmassa</h3>
+
+            <p>Avaa lataamasi tiedosto <b>nuorisovaalit2011-uurnatulokset.xls</b>
+               OpenOffice.org-ohjelmassa. Avattuasi tiedoston pitäisi ruudulla
+               näkyä kuvan 2 kaltainen näkymä, jossa ovat otsaketiedot.</p>
+
+            <div class="centered-image">
+              <img src="${request.application_url}/static/images/results-template-openoffice.png"
+                   alt="Avattu Excel-pohja OpenOffice.org -taulukkolaskentaohjelmassa."/><br/>
+              <span class="image-caption"><b>Kuva 2</b>. Otsaketiedot omissa sarakkeissaan OpenOffice.org -taulukkolaskentaohjelmassa.</span>
+            </div>
+
+            <h3 id="title-5">Excel-pohjan täyttäminen</h3>
+
+            <p>Excel-pohjaa täytettäessä on tärkeää, että sarakkeet
+            ovat oikeassa järjestyksessä ja tiedot ovat omissa
+            sarakkeissaan (Kuva 3).</p>
+
+            <p>Huomaa, että kaikille listatuille ehdokkaille tulee
+            antaa äänimäärä. Mikäli ehdokkaalle ei ole annettu
+            ääniä, äänimääräksi pistetään 0.</p>
+
+            <p>Ainoastaan 'Äänimäärä'-saraketta tulee muokata.</p>
+
+            <div class="centered-image">
+              <img src="${request.application_url}/static/images/uurnatulokset_esimerkki.gif"
+                   alt="Uurnatulokset esimerkki"/><br/>
+              <span class="image-caption"><b>Kuva 3</b>. Esimerkki täytetystä Excel-pohjasta.</span>
+            </div>
+
+            <h3 id="title-6">Tuetut Excel-tiedostojen versiot</h3>
+
+            <p>Järjestelmä tukee seuraavia Excelin versioita</p>
+            <ul>
+              <li>Excel 95</li>
+              <li>Excel 97</li>
+              <li>Excel 2000</li>
+              <li>Excel 2003</li>
+              <li>Excel 2007</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="submission">
+        <h2>3. Lataa täytetty Excel-tiedosto palveluun</h2>
+        <p>Lataa uurnaäänestyksen tulokset palveluun alla olevalla lomakkeella.</p>
+        <p>Järjestelmä tarkistaa ladatun tiedoston tavallisimpien
+        virheiden varalta, mutta on suositeltavaa tarkistaa äänimäärät
+        lomakkeen alle ilmestyvästä taulukosta. Mikäli
+        huomaat virheitä tiedoissa, korjaa virheet Excel-pohjaan ja lähetä
+        se uudelleen, jolloin se korvaa aikaisemmin ladatut tiedot.</p>
+
+        <div class="submission-info">
+          <form action="${action_url}" method="post" enctype="multipart/form-data">
+            <fieldset>
+              <input type="hidden" name="csrf_token" value="${csrf_token}" />
+              <input type="file" name="xlsfile" />
+              <input type="submit" value="Lähetä tulostiedot" />
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <p class="important-notification" tal:condition="submission">Huom! Tarkistathan alla olevat tiedot.</p>
+
+      <table id="results-information"
+             tal:condition="submission">
+        <caption>Tallennetut tulostiedot (${submission.timestamp}), ${len(submission.data)} ehdokasta</caption>
+        <thead>
+          <tr>
+            <th>Numero</th>
+            <th>Nimi</th>
+            <th>Äänimäärä</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="row submission.data">
+            <td class="candidate-number">${row.number}</td>
+            <td>${row.name}</td>
+            <td class="candidate-votes">${row.votes}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </body>
+
+  <metal:js metal:fill-slot="javascript_bottom">
+    <script type="text/javascript">
+      $(function () {
+        var maxHeight = $(window).height() - 160;
+        $('.submission-help .content').css('max-height', maxHeight + 'px');
+        $('a[rel]').overlay();
+      });
+    </script>
+  </metal:js>
+
+</html>

@@ -1,0 +1,34 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<!DOCTYPE html>
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="main.macros['master']">
+  <body>
+    <metal:header fill-slot="header">
+      <div>
+        <h1 class="visuallyhidden">Äänestykseen jatkaminen</h1>
+      </div>
+    </metal:header>
+
+    <metal:main fill-slot="main">
+      <section i18n:domain="WebIdentity">
+
+        <p>Olet tunnistautunut Nuorisovaalit 2011 -äänestysjärjestelmään.</p>
+        
+        <form method="post" action="${action_url}">
+          
+          <div id="authentication-accept">
+            <input type="submit" id="submit-accept" name="accept" value="Jatka äänestykseen" tabindex="1"
+                   i18n:attributes="value"/>
+            <input type="submit" id="submit-decline" name="decline" value="Keskeytä" tabindex="2"
+                   i18n:attributes="value"/>
+          </div>
+          <input type="hidden" name="csrf_token" value="${csrf_token}"/>
+          <input type="hidden" name="form.submitted" value="1"/>
+        </form>
+      </section>
+    </metal:main>
+    
+  </body>
+</html>

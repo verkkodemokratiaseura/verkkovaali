@@ -1,0 +1,44 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="main.macros['master']">
+<head></head>
+<body>
+  <metal:main fill-slot="main">
+  <section id="visited-sites">
+    <h2 i18n:translate="">Visited sites</h2>
+
+    <form action="${action_url}" method="post">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Website</th>
+            <th>Last visited</th>
+            <th>Remember</th>
+            <th>Persona</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="site sites">
+            <td><a href="${site.url}">${site.url}</a></td>
+            <td>${site.timestamp}</td>
+            <td><input type="checkbox" name="remember" value="${site.id}"
+                       tal:attributes="checked site.remember"/></td>
+            <td><a href="${site.persona.edit_url}"
+                   tal:condition="site.persona">${site.persona.name}</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="form-actions">
+        <input type="submit" name="form.submitted" value="Save changes"
+              i18n:attributes="value"/>
+      </p>
+    </form>
+
+  </section>
+  </metal:main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<configure xmlns="http://pylonshq.com/pyramid">
+
+  <!-- this must be included for the view declarations to work -->
+  <include package="pyramid_zcml" />
+
+  <!-- System level setup (security, i18n, etc) -->
+  <include file="system.zcml"/>
+
+  <!-- Content pages -->
+  <include file="pages.zcml"/>
+
+  <!-- User related (login, password) functionality -->
+  <include file="user.zcml"/>
+
+  <!-- OpenID protocol implementation -->
+  <include file="openid.zcml"/>
+
+  <!-- Customized 404 Not Found response -->
+  <view
+    view=".views.exceptions.notfound"
+    context="pyramid.exceptions.NotFound"/>
+
+  <static
+    name="static"
+    path="views/templates/static"
+    />
+
+</configure>

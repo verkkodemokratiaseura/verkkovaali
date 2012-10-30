@@ -1,0 +1,98 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <h1>${title}</h1>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+      <form id="login-form" action="${action_url}" method="post">
+        <p>
+          <label>Käyttäjätunnus:<br />
+          <input type="text" name="username" autofocus="autofocus" />
+          </label>
+          <label>Salasana:<br />
+          <input type="password" name="password" value="" />
+          </label>
+        </p>
+        <p>
+          Kirjautumalla sisään hyväksyn <a href="#" rel="#terms-of-use">käyttöehdot</a>
+          edustamani oppilaitoksen puolesta.
+        </p>
+        <div id="terms-of-use">
+          <div class="content">
+            <h2>Äänestysjärjestelmän käyttöehdot rekisterinpitäjille</h2>
+            <p>
+              Hyväksymällä nämä käyttöehdot oppilaitoksenne antaa
+              toimeksiannon xxxx:lle
+              (palveluntarjoaja) käsitellä oppilaitoksenne puolesta
+              järjestelmään syötettäviä oppilaiden henkilötietoja, jotka
+              muodostavat yyyy:n
+              (vaalien järjestäjä) nuorisovaalien koulukohtaisen
+              äänestäjärekisterin.
+            </p>
+            <p>
+              Oppilaiden ja opiskelijoiden henkilötietoja käsitellään
+              järjestelmän välityksellä teknisesti suojatusti siten,
+              ettei vaalien järjestäjällä ja palveluntarjoajalla ole
+              pääsyä sellaisiin tietoihin, joista äänestäjän
+              henkilöllisyys voitaisiin yksiselitteisesti tunnistaa.
+            </p>
+            <p>
+              Äänestyksen jälkeen oppilas- tai opiskelijakohtaiset
+              äänestystunnukset hävitetään, ellei oppilas- tai
+              opiskelija itse halua äänestyksen loppupuolella
+              tekemällään valinnalla muodostaa saamistaan
+              äänestystunnuksista itselleen
+              verkkovaikuttajaidentiteettiä. Kyseessä on sähköinen
+              identiteetti, jonka avulla oppilas- tai opiskelija voi
+              kirjautua jatkossa erilaisiin verkossa toimiviin
+              nuorisopalveluihin.
+            </p>
+            <p>
+              xxxx vastaa palveluntarjoajana
+              siitä, että tarpeellisen tekniset ja organisatoriset
+              toimenpiteet on toteutettu henkilötietojen suojaamiseksi
+              asiattomalta pääsyltä tietoihin ja vahingossa tai
+              laittomasti tapahtuvalta tietojen hävittämiseltä,
+              muuttamiselta, luovuttamiselta, siirtämiseltä taikka
+              muulta laittomalta käsittelyltä (HTL 32 §).
+            </p>
+            <p>
+              Jatkamalla tämän palvelun käyttöä hyväksytte
+              oppilaitoksenne puolesta em. käyttöehdot.
+            </p>
+          </div>
+        </div>
+        <p>
+          <input type="hidden" name="csrf_token" value="${csrf_token}" />
+          <input type="submit" name="form.submitted" value="Kirjaudu" />
+        </p>
+      </form>
+      <p><a href="${reset_url}">Salasana unohtunut?</a></p>
+
+      <p><strong>Lisätietoja ja neuvontaa:</strong><br />
+      xxxx xxxx<br/>
+      xxxx<br/>
+      xxxx<br/>
+      GSM xxx xxx xxxx<br/>
+      Sähköposti xxxx.xxxx@xxxx.xx<br/>
+      WWW <a href="http://www.xxxx.xx/" title="xxxx" target="_blank">http://www.xxxx.xx/</a></p>
+
+    </div>
+
+    <metal:js metal:fill-slot="javascript_bottom">
+      <script type="text/javascript">
+        $(function () {
+          var maxHeight = $(window).height() - 160;
+          $('#terms-of-use .content').css('max-height', maxHeight + 'px');
+          $('a[rel]').overlay();
+        });
+      </script>
+    </metal:js>
+
+  </body>
+</html>

@@ -1,0 +1,307 @@
+# <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Finnish translations for WebIdentity.
+# Copyright (C) 2010 ORGANIZATION
+# This file is distributed under the same license as the WebIdentity
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WebIdentity 0.0\n"
+"Report-Msgid-Bugs-To: xxxx.xxxx@xxxx.xx\n"
+"POT-Creation-Date: 2010-10-15 22:06+0300\n"
+"PO-Revision-Date: 2011-03-18 16:46+0200\n"
+"Last-Translator: xxxx xxxx <xxxx.xxxx@xxxx.xx>\n"
+"Language-Team: fi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.5\n"
+
+#: webidentity/views/login.py:33
+msgid "CSRF attempt detected!"
+msgstr ""
+
+#: webidentity/views/login.py:40 webidentity/views/oid.py:398
+msgid "You have successfully logged in."
+msgstr "Olet sisäänkirjautunut."
+
+#: webidentity/views/login.py:43
+msgid "Login failed"
+msgstr "Sisäänkirjautuminen epäonnistui"
+
+#: webidentity/views/login.py:46
+msgid "Login"
+msgstr "Kirjaudu sisään"
+
+#: webidentity/views/login.py:56
+msgid "You have been logged out"
+msgstr "Sinut on kirjattu ulos."
+
+#: webidentity/views/login.py:77
+#: webidentity/views/templates/reset_password.pt:21
+#: webidentity/views/templates/reset_password.pt:9
+msgid "Reset password"
+msgstr "Vaihda salasana"
+
+#: webidentity/views/login.py:96
+#: webidentity/views/templates/change_password.pt:9
+#: webidentity/views/templates/reset_password_set_password.pt:33
+#: webidentity/views/templates/reset_password_set_password.pt:9
+msgid "Change password"
+msgstr "Vaihda salasana"
+
+#: webidentity/views/login.py:105
+msgid "Please supply a username."
+msgstr ""
+
+#: webidentity/views/login.py:109
+msgid "The given username does not match any account."
+msgstr "Antamasi käyttäjätunnusta ei ole olemassa."
+
+#: webidentity/views/login.py:117
+msgid "Password retrieval instructions have been emailed to you."
+msgstr "Salasanan vaihdon ohjeet on lähetetty sähköpostiosoitteeseesi."
+
+#: webidentity/views/login.py:130
+msgid "Password reset for ${identity}"
+msgstr ""
+
+#: webidentity/views/login.py:175 webidentity/views/user.py:56
+msgid "Password must be at least five characters long"
+msgstr "Salasanan tulee olla vähintään viisi merkkiä pitkä"
+
+#: webidentity/views/login.py:179 webidentity/views/user.py:58
+msgid "Given passwords do not match"
+msgstr "Annetut salasanat eroavat toisistaan"
+
+#: webidentity/views/login.py:199
+msgid "Password changed."
+msgstr "Salasana on vaihdettu."
+
+#: webidentity/views/oid.py:82
+msgid "OpenID authentication in progress"
+msgstr "OpenID tunnistauminen käynnissä"
+
+#: webidentity/views/oid.py:225
+msgid "Approve OpenID request?"
+msgstr "Hyväksy OpenID tunnistautumispyyntö?"
+
+#: webidentity/views/oid.py:403
+msgid "Failed to log in, please try again."
+msgstr ""
+"Sisäänkirjautuminen epäonnistui, yritä uudestaan. Tarkista, että "
+"syöttämäsi tunnus ja salasana on kirjoitettu pienillä kirjaimilla."
+
+#: webidentity/views/oid.py:406
+msgid "Log in to authenticate OpenID request"
+msgstr "Kirjaudu sisään OpenID tunnistautumista varten"
+
+#: webidentity/views/oid.py:442
+msgid "Identity page"
+msgstr "Identiteettisivu"
+
+#: webidentity/views/pages.py:7
+msgid "Welcome to WebIdentities"
+msgstr "Tervetuloa WebIdentities-palveluun"
+
+#: webidentity/views/ui.py:13
+msgid "Log in"
+msgstr "Kirjaudu sisään"
+
+#: webidentity/views/ui.py:17
+msgid "Profile"
+msgstr "Omat tiedot"
+
+#: webidentity/views/ui.py:18
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+#: webidentity/views/ui.py:22
+msgid "About"
+msgstr "Tietoja palvelusta"
+
+#: webidentity/views/ui.py:23
+msgid "Contact"
+msgstr "Yhteystiedot"
+
+#: webidentity/views/user.py:52
+msgid "CSRF attempt!"
+msgstr ""
+
+#: webidentity/views/user.py:54
+msgid "Current password is wrong"
+msgstr "Nykyinen salasana on väärin"
+
+#: webidentity/views/user.py:64
+msgid "Password changed"
+msgstr "Salasana on vaihdettu."
+
+#. Default: Change password
+#: webidentity/views/templates/change_password.pt:38
+#, fuzzy
+msgid "button_change_password"
+msgstr "Vaihda salasana"
+
+#. Default: New password
+#: webidentity/views/templates/change_password.pt:32
+#: webidentity/views/templates/change_password.pt:24
+#, fuzzy
+msgid "placeholder_new_password"
+msgstr "matti.meikalainen.oid.fi"
+
+#: webidentity/views/templates/change_password.pt:29
+#: webidentity/views/templates/reset_password_set_password.pt:24
+msgid "Confirm password"
+msgstr "Salasanan varmennus"
+
+#: webidentity/views/templates/change_password.pt:21
+#: webidentity/views/templates/reset_password_set_password.pt:27
+#: webidentity/views/templates/reset_password_set_password.pt:19
+#: webidentity/views/templates/reset_password_set_password.pt:16
+msgid "New password"
+msgstr "Uusi salasana"
+
+#. Default: Your current password
+#: webidentity/views/templates/change_password.pt:16
+#, fuzzy
+msgid "placeholder_current_password"
+msgstr "matti.meikalainen.oid.fi"
+
+#: webidentity/views/templates/change_password.pt:13
+#, fuzzy
+msgid "Current password"
+msgstr "Vaihda salasana"
+
+#: webidentity/views/templates/form_auto_submit.pt:11
+msgid ""
+"If your browser does not automatically redirect you back to the website "
+"click the \"Continue\" button below."
+msgstr ""
+
+#: webidentity/views/templates/form_auto_submit.pt:9
+msgid "Return to the website"
+msgstr ""
+
+#: webidentity/views/templates/login.pt:36
+#: webidentity/views/templates/openid_confirm_login.pt:33
+msgid "Forgot your password?"
+msgstr "Unohditko salasanasi?"
+
+#: webidentity/views/templates/login.pt:31
+msgid "Log In"
+msgstr "Kirjaudu sisään"
+
+#: webidentity/views/templates/login.pt:25
+#: webidentity/views/templates/login.pt:22
+#: webidentity/views/templates/openid_confirm_login.pt:21
+msgid "Password"
+msgstr "Salasana"
+
+#: webidentity/views/templates/login.pt:16
+msgid "Username, e.g. john.doe"
+msgstr "Käyttäjätunnus, esim. matti.virtanen"
+
+#. Default: Username
+#: webidentity/views/templates/login.pt:13
+msgid "label_username"
+msgstr "Käyttäjätunnus"
+
+#: webidentity/views/templates/login.pt:9
+msgid "Log in to your account"
+msgstr "Kirjaudu sisään"
+
+#: webidentity/views/templates/master.pt:65
+msgid "Logged in as"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:67
+msgid "No"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:65
+msgid "Yes"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:64
+#, fuzzy
+msgid "Authenticate this request?"
+msgstr "Kirjaudu sisään OpenID tunnistautumista varten"
+
+#: webidentity/views/templates/openid_confirm.pt:56
+msgid ""
+"Authentication requests for remembered websites will be authenticated "
+"automatically and you will not be required to explicitly authenticate "
+"them again on later visits. You can change the settings for each visited "
+"site on your . "
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:55
+#: webidentity/views/templates/openid_confirm.pt:54
+msgid "Remember this website?"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:22
+msgid "In addition, the website has requested for your profile information. "
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:11
+msgid ""
+"The website ${trust_root} has requested confirmation of your identity "
+"${identity}. "
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:9
+#, fuzzy
+msgid "OpenID authentication"
+msgstr "OpenID tunnistauminen käynnissä"
+
+#. Default: Log In
+#: webidentity/views/templates/openid_confirm_login.pt:28
+msgid "button_log_in"
+msgstr ""
+
+#. Default: Password
+#: webidentity/views/templates/openid_confirm_login.pt:24
+msgid "placeholder_password"
+msgstr ""
+
+#. Default: Username, e.g. john.doe
+#: webidentity/views/templates/openid_confirm_login.pt:17
+msgid "placeholder_username"
+msgstr "matti.meikalainen.oid.fi"
+
+#: webidentity/views/templates/openid_confirm_login.pt:14
+#: webidentity/views/templates/reset_password.pt:13
+msgid "Username"
+msgstr "Käyttäjätunnus"
+
+#: webidentity/views/templates/openid_confirm_login.pt:10
+#, fuzzy
+msgid "Log in to authenticate"
+msgstr "Kirjaudu sisään OpenID tunnistautumista varten"
+
+#: webidentity/views/templates/openid_identity.pt:15
+msgid ""
+"This is an OpenID identity. The owner of the identity can use it to "
+"participate in services that support the protocol."
+msgstr ""
+
+#. Default: Enter username
+#: webidentity/views/templates/reset_password.pt:16
+msgid "placeholder_enter_username"
+msgstr "Syötä käyttäjätunnuksesi"
+
+#: webidentity/views/templates/reset_password_set_password.pt:11
+msgid "Use the form below to change the password for ${username}."
+msgstr "Käytä oheista lomaketta vaihtaaksesi salasanan käyttäjälle ${username}"
+
+#: webidentity/views/templates/visited_sites.pt:35
+msgid "Save changes"
+msgstr ""
+
+#: webidentity/views/templates/visited_sites.pt:9
+msgid "Visited sites"
+msgstr ""
+

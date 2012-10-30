@@ -1,0 +1,216 @@
+# <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Translations template for WebIdentity.
+# Copyright (C) 2011 ORGANIZATION
+# This file is distributed under the same license as the WebIdentity project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WebIdentity 0.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2011-03-18 16:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.5\n"
+
+#: webidentity/views/login.py:49
+msgid "You have successfully logged in."
+msgstr ""
+
+#: webidentity/views/login.py:52
+msgid "Login failed"
+msgstr ""
+
+#: webidentity/views/login.py:55
+msgid "Login"
+msgstr ""
+
+#: webidentity/views/login.py:66
+msgid "You have been logged out"
+msgstr ""
+
+#: webidentity/views/login.py:88 webidentity/views/templates/reset_password.pt:21
+#: webidentity/views/templates/reset_password.pt:9
+msgid "Reset password"
+msgstr ""
+
+#: webidentity/views/login.py:107 webidentity/views/templates/change_password.pt:9
+#: webidentity/views/templates/reset_password_set_password.pt:33
+#: webidentity/views/templates/reset_password_set_password.pt:9
+msgid "Change password"
+msgstr ""
+
+#: webidentity/views/login.py:116
+msgid "Please supply a username."
+msgstr ""
+
+#: webidentity/views/login.py:120
+msgid "The given username does not match any account."
+msgstr ""
+
+#: webidentity/views/login.py:128
+msgid "Password retrieval instructions have been emailed to you."
+msgstr ""
+
+#: webidentity/views/login.py:141
+msgid "Password reset for ${identity}"
+msgstr ""
+
+#: webidentity/views/login.py:186 webidentity/views/user.py:60
+msgid "Password must be at least five characters long"
+msgstr ""
+
+#: webidentity/views/login.py:190 webidentity/views/user.py:62
+msgid "Given passwords do not match"
+msgstr ""
+
+#: webidentity/views/login.py:210
+msgid "Password changed."
+msgstr ""
+
+#: webidentity/views/oid.py:99
+msgid "OpenID authentication in progress"
+msgstr ""
+
+#: webidentity/views/oid.py:246
+msgid "Approve OpenID request?"
+msgstr ""
+
+#: webidentity/views/oid.py:431
+msgid "Failed to log in, please try again."
+msgstr ""
+
+#: webidentity/views/oid.py:434
+msgid "Log in to authenticate OpenID request"
+msgstr ""
+
+#: webidentity/views/oid.py:471
+msgid "Identity page"
+msgstr ""
+
+#: webidentity/views/pages.py:8
+msgid "Nuorisovaalit 2011 - Tunnistautuminen"
+msgstr ""
+
+#: webidentity/views/user.py:58
+msgid "Current password is wrong"
+msgstr ""
+
+#: webidentity/views/user.py:68
+msgid "Password changed"
+msgstr ""
+
+#. Default: Change password
+#: webidentity/views/templates/change_password.pt:38
+msgid "button_change_password"
+msgstr ""
+
+#. Default: New password
+#: webidentity/views/templates/change_password.pt:32
+#: webidentity/views/templates/change_password.pt:24
+msgid "placeholder_new_password"
+msgstr ""
+
+#: webidentity/views/templates/change_password.pt:29
+#: webidentity/views/templates/reset_password_set_password.pt:24
+msgid "Confirm password"
+msgstr ""
+
+#: webidentity/views/templates/change_password.pt:21
+#: webidentity/views/templates/reset_password_set_password.pt:27
+#: webidentity/views/templates/reset_password_set_password.pt:19
+#: webidentity/views/templates/reset_password_set_password.pt:16
+msgid "New password"
+msgstr ""
+
+#. Default: Your current password
+#: webidentity/views/templates/change_password.pt:16
+msgid "placeholder_current_password"
+msgstr ""
+
+#: webidentity/views/templates/change_password.pt:13
+msgid "Current password"
+msgstr ""
+
+#: webidentity/views/templates/form_auto_submit.pt:11
+msgid ""
+"If your browser does not automatically redirect you back to the website click"
+" the \"Continue\" button below."
+msgstr ""
+
+#: webidentity/views/templates/form_auto_submit.pt:9
+msgid "Return to the website"
+msgstr ""
+
+#: webidentity/views/templates/login.pt:36
+msgid "Forgot your password?"
+msgstr ""
+
+#: webidentity/views/templates/login.pt:31
+msgid "Log In"
+msgstr ""
+
+#: webidentity/views/templates/login.pt:25 webidentity/views/templates/login.pt:22
+#: webidentity/views/templates/openid_confirm_login.pt:24
+msgid "Password"
+msgstr ""
+
+#: webidentity/views/templates/login.pt:16
+msgid "Username, e.g. john.doe"
+msgstr ""
+
+#. Default: Username
+#: webidentity/views/templates/login.pt:13
+msgid "label_username"
+msgstr ""
+
+#: webidentity/views/templates/login.pt:9
+msgid "Log in to your account"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:23
+msgid "Keskeytä"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm.pt:21
+msgid "Jatka äänestykseen"
+msgstr ""
+
+#. Default: Tunnistaudu
+#: webidentity/views/templates/openid_confirm_login.pt:30
+msgid "button_log_in"
+msgstr ""
+
+#: webidentity/views/templates/openid_confirm_login.pt:18
+#: webidentity/views/templates/reset_password.pt:13
+msgid "Username"
+msgstr ""
+
+#: webidentity/views/templates/openid_identity.pt:15
+msgid ""
+"This is an OpenID identity. The owner of the identity can use it to "
+"participate in services that support the protocol."
+msgstr ""
+
+#. Default: Enter username
+#: webidentity/views/templates/reset_password.pt:16
+msgid "placeholder_enter_username"
+msgstr ""
+
+#: webidentity/views/templates/reset_password_set_password.pt:11
+msgid "Use the form below to change the password for ${username}."
+msgstr ""
+
+#: webidentity/views/templates/visited_sites.pt:35
+msgid "Save changes"
+msgstr ""
+
+#: webidentity/views/templates/visited_sites.pt:9
+msgid "Visited sites"
+msgstr ""
+

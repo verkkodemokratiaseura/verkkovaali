@@ -1,0 +1,35 @@
+<OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+.. Nuorisovaalit 2011 documentation master file, created by
+   sphinx-quickstart on Tue Nov  9 07:33:58 2010.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Nuorisovaalit 2011
+==================
+
+This is the end user application which implements the voting interface for
+Nuorisovaalit 2011. Authenticated users are able to vote for candidates in
+their designated voting districts. The application implements the voting
+process according to the process diagram below.
+
+.. image:: images/Voting-process-flow.png
+
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   login.txt
+   voting.txt
+   database_model.txt
+   security.txt
+   todo.txt
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

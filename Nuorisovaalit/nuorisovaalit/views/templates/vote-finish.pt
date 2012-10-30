@@ -1,0 +1,233 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <div id="vote-stored">
+        <h1 class="visuallyhidden">Äänesi on tallennettu</h1>
+      </div>
+    </metal:header>
+
+    <metal:content fill-slot="main">
+      <div class="row">
+        <div class="cell width-9 position-0">
+          <div class="info">
+            <h2>${message}</h2>
+
+            <p class="thank-you"
+               tal:condition="not errors">Kiitos äänestämisestä!</p>
+
+            <div id="pref-errors" tal:condition="errors">
+              <h3>Antamissasi tiedoissa oli virheitä:</h3>
+              <ul>
+                <li tal:repeat="error errors">${error}</li>
+              </ul>
+              <p>Korjaa tiedot ja lähetä lomake uudelleen.</p>
+            </div>
+
+            <p tal:condition="not has_preference and not errors">
+              <a href="#" id="identity-selection-trigger" tabindex="1">Tutustu verkkovaikuttajaidentiteettiin</a>
+            </p>
+
+            <form action="${action_url}" method="post" id="open-identity" autocomplete="off">
+              <div id="identity-selection-box"
+                   class=""
+                   tal:condition="not has_preference"
+                   tal:attributes="class python:'prefs-visible' if errors else 'prefs-hidden'">
+                <fieldset>
+                  <legend>Verkkovaikuttajaidentiteetti</legend>
+
+                  <p>
+                    <a href="#" id="identity-info" rel="#identity-terms-of-use">Verkkovaikuttajaidentiteetti</a>
+                    on sähköinen tunnus, jonka avulla voit jatkossa
+                    kirjautua laajenevassa määrin erilaisiin verkossa
+                    toimiviin nuorisopalveluihin.
+                  </p>
+
+                  <table id="preference-personal-info">
+                    <caption>Tallennettavat tiedot</caption>
+
+                    <tr>
+                      <td class="info-title">Tunnus:</td>
+                      <td>${voter.openid}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Etunimi:</td>
+                      <td>${voter.firstname}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Sukunimi:</td>
+                      <td>${voter.lastname}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Syntymäaika:</td>
+                      <td>${voter.dob.strftime('%d.%m.%Y')}</td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">GSM-numero:</td>
+                      <td><input type="text" name="gsm" value="${gsm}" tabindex="2"/></td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Sähköpostiosoite:</td>
+                      <td><input type="text" name="email" value="${email}" tabindex="3"/></td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Katuosoite:</td>
+                      <td><input type="text" name="street" value="${street}" tabindex="4"/></td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Postinumero:</td>
+                      <td><input type="text" name="zipcode" value="${zipcode}" tabindex="5"/></td>
+                    </tr>
+                    <tr>
+                      <td class="info-title">Postitoimipaikka:</td>
+                      <td><input type="text" name="city" value="${city}" tabindex="6"/></td>
+                    </tr>
+                  </table>
+
+                  <p tal:condition="errors and not pref_selected"
+                     id="openid-pref-not-selected">Valitse haluatko Verkkovaikuttajaidentiteetin:</p>
+
+                  <p>
+                    <input type="radio"
+                           name="use_open_identity"
+                           id="use-identity-yes"
+                           value="yes"
+                           tabindex="7"
+                           tal:attributes="checked 'checked' if pref_selected and accept_openid else None"/>
+
+                    <label for="use-identity-yes">Haluan verkkovaikuttajaidentiteetin</label>
+                    <span id="accept-terms">ja hyväksyn
+                    <a href="#" id="terms-overlay-trigger" rel="#identity-terms-of-use" tabindex="8">käyttöehdot</a>.
+                    </span> Ylläolevat tietoni tallennetaan verkkovaikuttajaidentiteetin profiilitietoihin
+                    <a target="_blank" href="${request.application_url}/static/Tietosuojaseloste_Suomen_Verkkodemokratiaseura_ry.pdf">tietosuojaselosteen</a>
+                    mukaisesti.
+                    <div id="identity-terms-of-use">
+                      <div class="content">
+                        <h3>Mikä on verkkovaikuttajaidentiteetti?</h3>
+
+                        <p>
+                          Verkkovaikuttajaidentiteetti on käytännössä sama asia, kuin
+                          nuorisovaaleja varten saamasi äänestystunnus ja salasana.
+                        </p>
+                        <p>
+                          Tämän sähköisen identiteetin avulla voit jatkossa kirjautua
+                          laajenevassa määrin erilaisiin verkossa toimiviin
+                          nuorisopalveluihin. Jo kuluvan vuoden aikana voit käyttää
+                          verkkovaikuttajaidentiteettiäsi mm. seuraavissa
+                          nuorisopalveluissa ja tiloissa:
+                        </p>
+
+                        <ul>
+                          <li><a href="http://xxxx.xx/" target="_blank">xxxx.xx</a></li>
+                          <li><a href="http://yyyy.yy/" target="_blank">yyyy.yy</a></li>
+                          <li><a href="http://www.zzzz.zz/" target="_blank">zzzz</a></li>
+                        </ul>
+
+                        <p>
+                          Uusien palveluiden avautuessa saat tästä sähköpostiisi automaattisesti
+                          ilmoituksen. Selainpohjaisen käyttöliittymän avulla pääset muokkaamaan
+                          sähköisen identiteettisi tietoja siten, että voit esim. halutessasi
+                          estää em. palvelunavausviestien saapumisen sähköpostiisi.
+                        </p>
+
+                        <h3>Mitä verkkovaikuttajaidentiteetin käyttäminen maksaa?</h3>
+
+                        <p>
+                          Verkkovaikuttajaidentiteetti on käyttäjilleen maksuton. Kyseessä on
+                          yleishyödyllinen palvelu, joka saa rahoituksensa opetus- ja
+                          kulttuuriministeriön kautta.
+                        </p>
+
+                        <h3>Miten saan verkkovaikuttajaidentiteetin käyttööni?</h3>
+
+                        <p>
+                          Näet alla olevassa lomakkeessa henkilötietosi, jotka
+                          olet lähettämässä palveluntarjoajalle.
+                          Palveluntarjoaja on yleishyödyllinen järjestö (<a
+                          href="http://www.verkkodemokratia.fi" target="_blank">Suomen
+                          Verkkodemokratiaseura</a>), jonka tarkoituksena on
+                          edistää verkossa tapahtuvaa kansalaistoimintaa. Jos
+                          tiedot ovat mielestäsi oikein, voit lähettää ne
+                          palveluntarjoajalle valitsemalla lomakkeesta "Haluan
+                          verkkovaikuttajaidentiteetin" ja klikkaamalla
+                          ”Poistu äänestyksestä” -painiketta. Toimenpiteen
+                          suoritettuasi sinun ja palveluntarjoajan välille on
+                          syntynyt palvelun käyttämiseen liittyvä
+                          asiakkuussuhde. Mikäli esitäytetyissä tiedoissasi on
+                          puutteita, tulee sinun täydentää ne ennen lomakkeen
+                          lähettämistä.
+                        </p>
+
+                        <h3>Mihin palveluntarjoaja tarvitsee henkilötietojani?</h3>
+
+                        <p>
+                          Henkilötietoja tarvitaan palvelun ylläpitoa varten. Jos esimerkiksi
+                          käy niin, että salasana unohtuu, voi uuden tilata verkkosivujen
+                          kautta. Palveluntarjoaja ei voi kuitenkaan lähettää uutta salasanaa,
+                          mikäli sähköpostiosoitteesi ei ole tiedossa. Asiakasrekisteristä tieto
+                          on kuitenkin helppo tarkistaa.
+                        </p>
+                        <p>
+                          Henkilötietoja tarvitaan myös turvallisen verkossa liikkumisen
+                          vuoksi. Verkkovaikuttajaidentiteetti on tarkoitettu lasten ja nuorten
+                          verkkopalveluja varten, minkä vuoksi henkilötietoja tarvitaan
+                          asiakkaiden oikean ikäkauden varmistamiseksi.
+                        </p>
+                      </div>
+                    </div>
+                  </p>
+
+                  <p>
+                    <input type="radio"
+                           name="use_open_identity"
+                           id="use-identity-no"
+                           value="no"
+                           tabindex="9"
+                           tal:attributes="checked 'checked' if (not pref_selected and not errors) else None"/>
+                    <label for="use-identity-no">En halua verkkovaikuttajaidentiteettiä.</label>
+                    Tietoni poistetaan äänestyksen jälkeen.
+                  </p>
+
+                  <p id="pref-submit-info">Valintasi tallennetaan, kun poistut äänestyksestä.</p>
+
+                </fieldset>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="${csrf_token}" />
+              <input type="hidden" name="form.submitted" value="1" />
+              <input type="submit" id="submit-exit" name="" value="Poistu äänestyksestä" tabindex="10" />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </metal:content>
+
+    <div metal:fill-slot="javascript_bottom">
+      <script type="text/javascript">
+        $(function () {
+
+            // Overlay height.
+            var maxHeight = $(window).height() - 160;
+            $('#identity-terms-of-use .content').css('max-height', maxHeight + 'px');
+            $('#terms-overlay-trigger,#identity-info').overlay();
+
+            $('#identity-selection-trigger').css('visibility', 'visible').click(function (e) {
+                e.preventDefault();
+
+                // Remove selection when overlay is opened.
+                $('input[type=radio]').removeAttr('checked')
+
+                $(this).parent().fadeOut(function () {
+                    $('#identity-selection-box').fadeIn();
+                });
+            });
+        });
+      </script>
+    </div>
+
+  </body>
+</html>

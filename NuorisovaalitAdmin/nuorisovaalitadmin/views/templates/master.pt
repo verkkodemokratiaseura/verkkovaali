@@ -1,0 +1,111 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<metal:document define-macro="master"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  ><tal:doctype content="structure string:&lt;!DOCTYPE html&gt;"/>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8"/>
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+  <title tal:content="title|default">Nuorisovaalit 2011</title>
+  <meta name="description"
+        tal:condition="description|None"
+        tal:attributes="content description" />
+  <meta name="author"
+        tal:condition="author|None"
+        tal:attributes="content author" />
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="${request.application_url}/favicon.ico"/>
+  <link rel="apple-touch-icon" href="${request.application_url}/apple-touch-icon.png"/>
+
+  <!-- CSS : implied media="all" -->
+  <link rel="stylesheet" href="${request.application_url}/static/css/style.css?v=2"/>
+  <link rel="stylesheet" href="${request.application_url}/static/css/decogrids-9.css"/>
+  <link rel="stylesheet" href="${request.application_url}/static/css/jquery.autocomplete.css"/>
+  <link rel="stylesheet" href="${request.application_url}/static/css/jquery.gritter.css"/>
+
+  <!-- Uncomment if you are specifically targeting less enabled mobile browsers
+  <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
+
+  <metal:head define-slot="head_slot"/>
+
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <script src="${request.application_url}/static/js/libs/modernizr-1.6.min.js"></script>
+
+</head>
+
+<body class="${section|None}">
+
+  <div id="container">
+    <header>
+      <nav tal:condition="top_navigation|None">
+        <a tal:repeat="nav_item top_navigation" class="${nav_item.name}${' disabled' if nav_item.url is None else ''}"
+           tal:attributes="href nav_item.url">${nav_item.title}</a>
+      </nav>
+      <p id="logged-in-as" tal:condition="logged_user">
+        Kirjautuneena tunnuksella <strong>${logged_user}</strong> (${logged_school}) |
+        <a href="${logout_url}">kirjaudu ulos</a>
+      </p>
+      <metal:header define-slot="header"/>
+    </header>
+
+    <section id="flash"
+             tal:condition="flash_messages|None">
+      <div tal:repeat="message flash_messages">$message</div>
+    </section>
+
+    <div id="content">
+      <metal:content define-slot="main"/>
+    </div>
+
+    <footer>
+      <metal:footer define-slot="footer"/>
+    </footer>
+  </div> <!--! end of #container -->
+
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <script src="${request.application_url}/static/js/libs/jquery-1.4.4.min.js"></script>
+  <script src="${request.application_url}/static/js/libs/jquery.autocomplete.min.js"></script>
+  <script src="${request.application_url}/static/js/libs/jquery.gritter.min.js"></script>
+  <script src="${request.application_url}/static/js/libs/jquery.tools.min.js"></script>
+  <script src="${request.application_url}/static/js/plugins.js"></script>
+  <script src="${request.application_url}/static/js/script.js"></script>
+
+  <!--[if lt IE 7 ]>
+    <script src="${request.application_url}/static/js/libs/dd_belatedpng.js"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    //<![CDATA[
+    $(function () {
+      $('#flash > div').each(function () {
+        var html = $(this).html();
+        $.gritter.add({
+          title: 'Huomio',
+          text: html
+        });
+      });
+    });
+    //]]>
+  </script>
+
+  <metal:javascript define-slot="javascript_bottom"/>
+
+</body>
+</html>
+</metal:document>

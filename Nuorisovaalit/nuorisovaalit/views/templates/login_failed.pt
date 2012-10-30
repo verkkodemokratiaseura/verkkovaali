@@ -1,0 +1,29 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <div id="failed-login">
+        <h1 class="visuallyhidden">Nuorisovaalit 2011</h1>
+      </div>
+    </metal:header>
+
+    <div id="openidlogin-failed"
+         metal:fill-slot="main">
+
+      <h2>Tunnistautuminen epäonnistui</h2>
+
+      <p>${message}</p>
+
+      <p>
+        <a href="${request.application_url}">Yritä tunnistautumista
+        uudelleen</a> tai ota tarvittaessa yhteyttä
+        tekniseen tukipalveluun osoitteessa
+        <a href="mailto:xxxx@xxxx.xx">xxxx@xxxx.xx</a>.
+      </p>
+
+    </div>
+  </body>
+</html>

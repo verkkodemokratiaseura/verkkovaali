@@ -1,0 +1,215 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<configure xmlns="http://pylonshq.com/pyramid">
+
+  <!-- this must be included for the view declarations to work -->
+  <include package="pyramid_zcml" />
+
+  <authtktauthenticationpolicy
+    secret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    secure="true"
+    include_ip="false"
+    timeout="3600"
+    reissue_time="1200"
+    http_only="true"
+    callback=".views.login.groupfinder"
+    />
+
+  <aclauthorizationpolicy/>
+
+  <!-- Global variables available for each renderer -->
+  <utility
+     component="nuorisovaalitadmin.views.system.renderer_globals_factory"
+     provides="pyramid.interfaces.IRendererGlobalsFactory"
+   />
+
+  <route
+    pattern=""
+    name="index"
+    view=".views.login.index"
+    view_renderer="views/templates/index.pt"
+    />
+
+  <route
+    pattern="/login"
+    name="login"
+    view=".views.login.login"
+    view_renderer="views/templates/login.pt"
+    />
+
+  <route
+    pattern="/logout"
+    name="logout"
+    view=".views.login.logout"
+    />
+
+  <!-- Allows the school representatives to upload the voter information
+       and review the latest submission. -->
+  <route
+    pattern="/submit-voters"
+    name="submit_voters"
+    view=".views.school.SubmitVoters"
+    view_attr="submit_voters"
+    view_renderer="views/templates/submit_voters.pt"
+    permission="submit-voters"
+    />
+
+  <!-- Download view for the voter information template. -->
+  <route
+    pattern="voters-template.csv"
+    name="voters_template_csv"
+    view=".views.school.voters_template_csv"
+    permission="submit-voters"
+    />
+  <route
+    pattern="voters-template.xls"
+    name="voters_template_xls"
+    view=".views.school.voters_template_xls"
+    permission="submit-voters"
+    />
+
+  <!-- Allows the school representative to download a list of voters who cast
+       a vote in the e-election. -->
+  <route
+    pattern="/voter-list"
+    name="voter_list"
+    view=".views.school.voter_list"
+    view_renderer="views/templates/voter_list.pt"
+    permission="download-voters"
+    />
+
+  <!-- Download view for the voter list. -->
+  <route
+    pattern="/voter-list.xls"
+    name="voter_list_xls"
+    view=".views.school.voter_list_xls"
+    permission="download-voters"
+    />
+
+  <!-- Allows the school representative to upload results of the paper
+       ballot and review the latest submission. -->
+  <route
+    pattern="/submit-results"
+    name="submit_results"
+    view=".views.school.SubmitResults"
+    view_attr="submit_results"
+    view_renderer="views/templates/submit_results.pt"
+    permission="submit-results"
+    />
+
+  <!-- Download view for the results template. -->
+  <route
+    pattern="/results-template.xls"
+    name="results_template_xls"
+    view=".views.school.results_template_xls"
+    permission="submit-results"
+    />
+
+  <!-- Allows the school representative to download the combined results of
+       the e-election and paper ballot. -->
+  <route
+    pattern="/results"
+    name="results"
+    view=".views.school.results"
+    renderer="views/templates/results.pt"
+    permission="download-results"
+    />
+
+  <!-- Download view for the combined school results. -->
+  <route
+    pattern="/results.xls"
+    name="results_xls"
+    view=".views.school.results_xls"
+    permission="download-results"
+    />
+
+  <!-- Voter information submission statistics for xxxx. -->
+  <route
+    pattern="/voter-submission-stats"
+    name="voter_submission_stats"
+    view=".views.xxxx.voter_submission_stats"
+    renderer="views/templates/voter_submission_stats.pt"
+    permission="view-stats"
+    />
+
+  <!-- Paper ballot results submission statistics for xxxx. -->
+  <route
+    pattern="/result-submission-stats"
+    name="result_submission_stats"
+    view=".views.xxxx.result_submission_stats"
+    renderer="views/templates/result_submission_stats.pt"
+    permission="view-stats"
+    />
+
+  <!-- Index page for the total election results for xxxx. -->
+  <route
+    pattern="/results-index"
+    name="results_index"
+    view=".views.xxxx.results_index"
+    renderer="views/templates/results_index.pt"
+    permission="view-stats"
+    />
+
+  <!-- Excel file for the total election results for xxxx. -->
+  <route
+    pattern="/results-total.xls"
+    name="results_total_xls"
+    view=".views.xxxx.results_total_xls"
+    permission="view-stats"
+    />
+
+  <route
+    pattern="/reset-password"
+    name="reset_password"
+    view=".views.login.PasswordResetView"
+    view_attr="render_form"
+    renderer="views/templates/reset_password.pt"
+    />
+
+  <route
+    pattern="/reset-password/initiate"
+    name="reset_password_initiate"
+    view=".views.login.PasswordResetView"
+    view_attr="send_confirmation_message"
+    request_method="POST"
+    />
+
+  <!-- Updates the user password if all input is valid -->
+  <route
+    pattern="/reset-password/process"
+    name="reset_password_process"
+    view=".views.login.PasswordResetView"
+    view_attr="change_password"
+    request_method="POST"
+    />
+
+  <route
+    pattern="/reset-password/{token}"
+    name="reset_password_token"
+    view=".views.login.PasswordResetView"
+    view_attr="password_change_form"
+    renderer="views/templates/reset_password_set_password.pt"
+    />
+
+  <!-- Customize 403 Forbidden response -->
+  <view
+    view=".views.exceptions.unauthorized"
+    context="pyramid.exceptions.Forbidden"/>
+
+  <!-- Customized 404 Not Found response -->
+  <view
+    view=".views.exceptions.notfound"
+    context="pyramid.exceptions.NotFound"/>
+
+  <!-- HAProxy health check resource. -->
+  <route
+    pattern="/ping"
+    name="ping"
+    view=".views.system.ping"
+    />
+
+  <static
+    name="static"
+    path="views/templates/static"
+    />
+
+</configure>

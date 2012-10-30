@@ -1,0 +1,95 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <div id="select-candidate">
+        <h1 class="visuallyhidden">Valitse</h1>
+      </div>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+
+    <div id="selection-info">
+    <div class="row">
+      <div class="cell width-6 position-0">
+        <p id="select-info">Valitse ehdokkaasi klikkaamalla nimeä.</p>
+        <p id="select-empty-info">Halutessasi voit äänestää myös <a href="${empty_vote_url}" title="Äänestä tyhjää">tyhjää</a>.</p>
+      </div>
+      <div id="search-wrapper" class="cell width-3 position-6"></div>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="cell width-9 position-0">
+        <h3 style="text-align:center;margin-top:1em">${district}</h3>
+      </div>
+    </div>
+    <tal:parties repeat="party parties">
+
+    <div class="row">
+      <div class="cell width-9 position-0">
+        <h3 class="party">${party.title}</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <tal:columns repeat="column party.candidates">
+      <div class="cell width-1:${columns} position-${party.positions.next()}">
+        <ul class="candidates">
+          <tal:candidate repeat="candidate column">
+          <li class="candidate" tal:condition="candidate">
+            <a href="${candidate.url}"
+               title="Valitse ${candidate.name} ${candidate.number}, ${party.title}">${candidate.number} ${candidate.name}</a>
+          </li>
+          </tal:candidate>
+        </ul>
+      </div>
+      </tal:columns>
+    </div>
+
+    </tal:parties>
+
+    <div class="row"
+         tal:condition="coalitions">
+      <div class="cell width-9 position-0">
+        <aside id="coalition">
+          <h3>Vaaliliitossa</h3>
+          <ul>
+            <li tal:repeat="coalition coalitions">${coalition}</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    </div>
+
+    <div metal:fill-slot="javascript_bottom">
+      <script type="text/javascript">
+        $(function () {
+
+            var confirmUnload = true;
+
+            $('a').click(function () {
+               confirmUnload = false;
+            });
+
+            // Confirm the page unload if the user didn't follow a link.
+            window.onbeforeunload = function (e) {
+                if (confirmUnload) {
+                    var e = e || window.event,
+                        msg = 'Et ole vielä äänestänyt. Oletko varma, että haluat poistua sivulta?';
+                    if (e) {
+                        e.returnValue = msg;
+                    }
+                    return msg;
+                }
+            };
+        });
+      </script>
+    </div>
+
+  </body>
+</html>

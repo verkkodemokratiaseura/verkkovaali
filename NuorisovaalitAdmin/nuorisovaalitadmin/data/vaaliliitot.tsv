@@ -1,0 +1,20 @@
+# <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+1	Helsingin vaalipiiri	KD,KÖY
+2	Uudenmaan vaalipiiri	M11,VP
+2	Uudenmaan vaalipiiri	ITSP,KÖY
+3	Varsinais-Suomen vaalipiiri	RKP,KESK
+3	Varsinais-Suomen vaalipiiri	KTP,SKP
+4	Satakunnan vaalipiiri	KESK,KD
+5	Ahvenanmaan maakunnan vaalipiiri	
+6	Hämeen vaalipiiri	
+7	Pirkanmaan vaalipiiri	M11,PIR
+7	Pirkanmaan vaalipiiri	STP,SKP
+8	Kymen vaalipiiri	
+9	Etelä-Savon vaalipiiri	
+10	Pohjois-Savon vaalipiiri	STP,SKP,KTP
+10	Pohjois-Savon vaalipiiri	KD,ITSP,KÖY
+11	Pohjois-Karjalan vaalipiiri	KOK,KD
+12	Vaasan vaalipiiri	KTP,SKP
+13	Keski-Suomen vaalipiiri	
+14	Oulun vaalipiiri	KD,KÖY,ITSP
+15	Lapin vaalipiiri	SKP,KTP

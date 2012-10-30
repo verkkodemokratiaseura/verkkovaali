@@ -1,0 +1,98 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head></head>
+  <body>
+    <metal:header fill-slot="header">
+      <div id="vote-candidate">
+        <h1 class="visuallyhidden">Äänestä</h1>
+      </div>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+      <div class="row">
+        <div class="cell width-1:2 position-0">
+          <div id="voting-info">
+            <h2>Nuorisovaalit 2011</h2>
+
+            <table id="voter">
+              <tbody>
+                <tr>
+                  <th>Äänestäjä:</th>
+                  <td>${profile.fullname}</td>
+                </tr>
+                <tr>
+                  <th>Vaalipiiri:</th>
+                  <td>${profile.district}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="selected-candidate">
+
+              <p>Olet valinnut ehdokkaan</p>
+
+              <p class="candidate-name">${candidate.number} ${candidate.name}</p>
+
+              <p>Äänestä valitsemaasi ehdokasta <span class="vote-hilight">kirjoittamalla ehdokkaan numero</span>
+              äänestyslippuun ja painamalla <strong>Äänestä</strong>-painiketta.</p>
+
+              <p>Voit halutessasi <a href="${select_url}" title="Vaihda ehdokasta">vaihtaa
+              valitsemaasi ehdokasta</a>.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="voting-form-container" class="cell width-1:2 position-1:2">
+          <div class="error"
+               tal:condition="error">Antamasi ehdokasnumero ei vastaa valintaasi.
+          Tarkista numero ja yritä uudelleen tai <a href="${select_url}" title="Vaihda ehdokasta">valitse toinen ehdokas</a>.</div>
+          <div id="voting-form">
+            <form method="post" action="${action_url}" autocomplete="off">
+              <label>N:o <input id="candidate-number" name="vote" type="text" autofocus="autofocus" tabindex="1" /></label>
+              <input type="hidden" name="csrf_token" value="${csrf_token}" />
+              <input id="submit-vote" type="submit" value="Äänestä" tabindex="2"/>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div metal:fill-slot="javascript_bottom">
+      <script type="text/javascript">
+        $(function () {
+
+            if (!Modernizr.input.autofocus) {
+                $('input[autofocus=autofocus]').focus();
+            }
+
+            var confirmUnload = true;
+
+            $('a').click(function () {
+               confirmUnload = false;
+            });
+            $('form').submit(function () {
+               confirmUnload = false;
+            });
+
+            // Confirm the page unload if the user didn't follow a link or submit a form.
+            window.onbeforeunload = function () {
+                if (confirmUnload) {
+                    var e = e || window.event,
+                        msg = 'Et ole vielä äänestänyt. Oletko varma, että haluat poistua sivulta?';
+                    if (e) {
+                        e.returnValue = msg;
+                    }
+                    return msg;
+                }
+            };
+
+        });
+      </script>
+    </div>
+
+  </body>
+</html>

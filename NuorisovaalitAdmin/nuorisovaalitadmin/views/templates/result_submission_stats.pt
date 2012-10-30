@@ -1,0 +1,46 @@
+<!-- <OpenID voting platform> Copyright (c) 2012  Suomen Verkkodemokratiaseura ry  <toimisto@verkkodemokratia.fi> This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE.TXT in the root directory of this program and GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main.macros['master']">
+  <head>
+    <metal:head metal:fill-slot="head_slot">
+      <link rel="stylesheet" href="${request.application_url}/static/css/jquery.barchart.css"/>
+    </metal:head>
+  </head>
+  <body>
+    <metal:header fill-slot="header">
+      <h1>${title}</h1>
+    </metal:header>
+
+    <div metal:fill-slot="main">
+      <ul>
+        <li>Uurnaäänestykseen osallistuvia kouluja yhteensä: ${school_count}</li>
+        <li>
+          Tulos-listoja vastaanotettu: ${school_count_submitted} (${submitted}% kouluista)
+          <div id="result-stats"></div>
+        </li>
+      </ul>
+
+      <h3>Listat puuttuvat seuraavilta kouluilta (${school_count_not_submitted}):</h3>
+
+      <ul>
+        <li tal:repeat="school schools_not_submitted">${school.district.name}, ${school.name}</li>
+      </ul>
+
+    </div>
+
+  </body>
+
+  <metal:bottom metal:fill-slot="javascript_bottom">
+    <script type="text/javascript" src="${request.application_url}/static/js/libs/jquery.barchart.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('#result-stats').barchart(${submitted}, ${not_submitted}, {
+          leftLabel: 'Lähetetty',
+          rightLabel: 'Ei lähetetty'
+        });
+      });
+    </script>
+  </metal:bottom>
+
+</html>
